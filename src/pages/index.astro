@@ -6,7 +6,11 @@ const projectEntries = await getCollection("projects");
 
 <Layout title="Welcome to Astro.">
   <header class="max-w-[70ch] mx-auto">
-    <h1>Smoll</h1>
+    <h1
+      class="text-transparent bg-gradient-to-r from-amber-700 to-yellow-400 text-xl inline-flex bg-clip-text"
+    >
+      Smoll
+    </h1>
     <ul>
       {
         projectEntries.map((projectEntry) => (
