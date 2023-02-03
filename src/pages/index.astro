@@ -1,31 +1,58 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 import { getCollection } from "astro:content";
 const projectEntries = await getCollection("projects");
 ---
 
 <Layout title="Welcome to Astro.">
-  <header class="max-w-[70ch] mx-auto">
-    <h1
-      class="text-transparent bg-gradient-to-r from-amber-700 to-yellow-400 text-xl inline-flex bg-clip-text"
-    >
-      Smoll
-    </h1>
-    <ul>
-      {
-        projectEntries.map((projectEntry) => (
-          <li>
-            <a href={`/projects/${projectEntry.slug}`}>
-              {projectEntry.data.title}
-            </a>
-            <time datetime={projectEntry.data.publishedDate.toISOString()}>
-              {projectEntry.data.publishedDate.toDateString()}
-            </time>
-          </li>
-        ))
-      }
-    </ul>
-  </header>
+  <Header />
+  <main class="grid gap-4">
+    <section>
+      <h2 class="font-bold text-2xl">Projects</h2>
+      <ul>
+        {
+          projectEntries.map((projectEntry) => (
+            <li>
+              <a href={`/projects/${projectEntry.slug}`}>
+                {projectEntry.data.title}
+              </a>
+              <time datetime={projectEntry.data.publishedDate.toISOString()}>
+                {projectEntry.data.publishedDate.toDateString()}
+              </time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section>
+      <h2 class="font-bold text-2xl mb-4">Blog</h2>
+      <ul class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 lg:gap-y-8">
+        {
+          projectEntries.map((projectEntry) => (
+            <li class="bg-zinc-900 p-4 hover:shadow-amber-800 hover:shadow-lg relative before:border-2 before:rotate-3 before:border-yellow-600/50 before:absolute before:inset-0 after:border-2 after:-rotate-3 after:border-amber-600/50 after:absolute after:inset-0">
+              <div class="grid">
+                <time
+                  class="text-xs uppercase text-zinc-400"
+                  datetime={projectEntry.data.publishedDate.toISOString()}
+                >
+                  {projectEntry.data.publishedDate.toDateString()}
+                </time>
+                <h3 class="font-bold text-xl">
+                  <a href={`/projects/${projectEntry.slug}`}>
+                    {projectEntry.data.title}
+                  </a>
+                </h3>
+              </div>
+              <p class="leading-6 text-sm">
+                Using a utility-first workflow to build complex components.
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
 </Layout>
 
 <style>
