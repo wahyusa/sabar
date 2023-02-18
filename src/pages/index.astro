@@ -3,14 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import { getCollection } from "astro:content";
 const projectEntries = await getCollection("projects");
+const blogEntries = await getCollection("blogs");
 ---
 
 <Layout title="Welcome to Astro.">
   <Header />
-  <main class="grid gap-4">
+  <main class="grid gap-8">
     <section>
-      <h2 class="font-bold text-2xl">Projects</h2>
-      <ul>
+      <h2 class="font-bold text-2xl mb-4">Projects</h2>
+      <ul class="flex flex-col gap-2">
         {
           projectEntries.map((projectEntry) => (
             <li>
@@ -26,21 +27,21 @@ const projectEntries = await getCollection("projects");
       </ul>
     </section>
     <section>
-      <h2 class="font-bold text-2xl mb-4">Blog</h2>
+      <h2 class="font-bold text-2xl mb-8">Blog</h2>
       <ul class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 lg:gap-y-8">
         {
-          projectEntries.map((projectEntry) => (
-            <li class="bg-zinc-900 p-4 hover:shadow-amber-800 hover:shadow-lg relative before:border-2 before:rotate-3 before:border-yellow-600/50 before:absolute before:inset-0 after:border-2 after:-rotate-3 after:border-amber-600/50 after:absolute after:inset-0">
+          blogEntries.map((blogEntry, index) => (
+            <li id={`blog-${index}`} class="bg-zinc-900  p-4 hover:shadow-lg ">
               <div class="grid">
                 <time
-                  class="text-xs uppercase text-zinc-400"
-                  datetime={projectEntry.data.publishedDate.toISOString()}
+                  class="text-xs uppercase font-light text-zinc-400"
+                  datetime={blogEntry.data.publishedDate.toISOString()}
                 >
-                  {projectEntry.data.publishedDate.toDateString()}
+                  {blogEntry.data.publishedDate.toDateString()}
                 </time>
                 <h3 class="font-bold text-xl">
-                  <a href={`/projects/${projectEntry.slug}`}>
-                    {projectEntry.data.title}
+                  <a href={`/blogs/${blogEntry.slug}`}>
+                    {blogEntry.data.title}
                   </a>
                 </h3>
               </div>

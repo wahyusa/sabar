@@ -9,5 +9,14 @@ const projects = defineCollection({
     draft: z.boolean(),
   }),
 });
+
+const blogs = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    author: z.string(),
+    publishedDate: z.date(),
+    draft: z.boolean(),
+  }),
+});
 // 3. Export a single `collections` object to register your collection(s)
-export const collections = { projects };
+export const collections = { projects, blogs };
