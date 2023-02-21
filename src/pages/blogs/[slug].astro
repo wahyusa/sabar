@@ -13,13 +13,13 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  project: CollectionEntry<"blogs">;
+  blog: CollectionEntry<"blogs">;
 }
 
-const { project } = Astro.props;
-const { title } = project.data;
+const { blog } = Astro.props;
+const { title } = blog.data;
 
-const { Content } = await project.render();
+const { Content } = await blog.render();
 
 const allPosts = await getCollection("blogs");
 ---
