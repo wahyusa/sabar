@@ -38,17 +38,9 @@ export default config({
           label: 'Summary',
           validation: { length: { min: 4, max: 120 } },
         }),
-        content: fields.document({
+        content: fields.text({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          layouts: [
-            [1, 1],
-            [1, 1, 1],
-            [2, 1],
-            [1, 2, 1],
-          ],
+          multiline: true,
         }),
       },
     }),
