@@ -1,102 +1,81 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import { getCollection } from "astro:content";
-const projectEntries = await getCollection("projects");
-const blogEntries = await getCollection("blogs");
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-  <Header />
-  <main class="grid gap-8">
-    <section>
-      <h2 class="font-bold text-2xl mb-4">Projects</h2>
-      <ul class="flex flex-col gap-2">
-        {
-          projectEntries.map((projectEntry) => (
-            <li>
-              <a href={`/projects/${projectEntry.slug}`}>
-                {projectEntry.data.title}
-              </a>
-              <time datetime={projectEntry.data.publishedDate.toISOString()}>
-                {projectEntry.data.publishedDate.toDateString()}
-              </time>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-    <section>
-      <h2 class="font-bold text-2xl mb-8">Blog</h2>
-      <ul class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 lg:gap-y-8">
-        {
-          blogEntries.map((blogEntry, index) => (
-            <li id={`blog-${index}`} class="bg-zinc-900  p-4 hover:shadow-lg ">
-              <div class="grid">
-                <time
-                  class="text-xs uppercase font-light text-zinc-400"
-                  datetime={blogEntry.data.publishedDate.toISOString()}
-                >
-                  {blogEntry.data.publishedDate.toDateString()}
-                </time>
-                <h3 class="font-bold text-xl">
-                  <a href={`/blogs/${blogEntry.slug}`}>
-                    {blogEntry.data.title}
-                  </a>
-                </h3>
-              </div>
-              <p class="leading-6 text-sm">
-                Using a utility-first workflow to build complex components.
-              </p>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-  </main>
+	<main>
+		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<p class="instructions">
+			To get started, open the directory <code>src/pages</code> in your project.<br />
+			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+		</p>
+		<ul role="list" class="link-card-grid">
+			<Card
+				href="https://docs.astro.build/"
+				title="Documentation"
+				body="Learn how Astro works and explore the official API docs."
+			/>
+			<Card
+				href="https://astro.build/integrations/"
+				title="Integrations"
+				body="Supercharge your project with new frameworks and libraries."
+			/>
+			<Card
+				href="https://astro.build/themes/"
+				title="Themes"
+				body="Explore a galaxy of community-built starter themes."
+			/>
+			<Card
+				href="https://astro.build/chat/"
+				title="Community"
+				body="Come say hi to our amazing Discord community. ❤️"
+			/>
+		</ul>
+	</main>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	.instructions code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
 </style>
