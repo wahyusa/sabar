@@ -1,11 +1,24 @@
 ---
+// src/pages/index.astro
+import { createReader } from '@keystatic/core/reader'
+
+// 0. Import the Keystatic config
+import keystaticConfig from '../../keystatic.config';
+
+// 1. Create a reader
+const reader = createReader(process.cwd(), keystaticConfig)
+
+// 2. Read the "Homepage" singleton
+const homepageData = await reader.singletons.homepage.read()
+
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<h1>Welcome to <span class="text-gradient">{homepageData?.headline}</span></h1>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
