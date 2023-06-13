@@ -20,7 +20,8 @@ export default config({
   collections: {
     posts: collection({
       label: 'Posts',
-      path : 'src/content/posts/*',
+      path: 'src/content/posts/*',
+      // directory: 'src/content/posts/',
       slugField: 'slug',
       schema: {
         title: fields.text({
@@ -38,9 +39,17 @@ export default config({
           label: 'Summary',
           validation: { length: { min: 4, max: 120 } },
         }),
-        content: fields.text({
+        content: fields.document({
           label: 'Content',
-          multiline: true,
+          formatting: true,
+          dividers: true,
+          links: true,
+          layouts: [
+            [1, 1],
+            [1, 1, 1],
+            [2, 1],
+            [1, 2, 1],
+          ],
         }),
       },
     }),

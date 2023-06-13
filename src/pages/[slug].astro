@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import config from '../../keystatic.config'
+import keystaticConfig from '../../keystatic.config'
 import { createReader } from '@keystatic/core/reader'
 import { DocumentRenderer } from '@keystatic/core/renderer'
 
 export const prerender = true
 
 export async function getStaticPaths() {
-  const reader = createReader('', config)
+  const reader = createReader('', keystaticConfig)
   const postSlugs = await reader.collections.posts.list()
   return [
     postSlugs.map((slug) => ({
@@ -17,13 +17,13 @@ export async function getStaticPaths() {
 }
 
 export async function getPostPropsForSlug({ slug }: { slug: string }) {
-  const reader = createReader('', config)
+  const reader = createReader('', keystaticConfig)
   const post = await reader.collections.posts.read(slug)
-  // const content = await (post?.content() || [])
+  const content = await (post?.content() || [])
   return {
     props: {
       ...post,
-      // content,
+      content,
     },
   }
 }
@@ -37,7 +37,7 @@ const { props } = await getPostPropsForSlug({ slug })
 
 <Layout title={props.title || 'Astro & Keystatic'}>
   <main>
-    <!-- <DocumentRenderer document={props.content} /> -->
+    <DocumentRenderer document={props.content} />
   </main>
 </Layout>
 

@@ -1,0 +1,239 @@
+# Hello there Astronaut, welcome to Keystatic!
+
+Now that we have a `@keystatic/astro` package we can run Keystatic as a CMS for **Astro** projects.
+
+> `@keystatic/astro` requires the project to be running on Astro v2
+
+## Starting from scratch
+
+Once an Astro v2 project we need to add in the Keystatic parts by doing the following:
+
+### Installing dependancies
+
+`npm install @astrojs/node @astrojs/react @keystatic/core @keystatic/astro`
+
+### Adding a keystatic-config file at the root of the project
+
+```typescript
+// keystatic-config.tsx
+
+import { collection, config, fields } from '@keystatic/core'
+export default config({
+  storage: {
+    kind: 'github', 
+    repo: {
+      owner: GITHUB_OWNER_NAME,
+      name: GITHUB_REPO_NAME
+    }
+  },
+  collections: {
+    posts: collection({
+      label: 'Posts',
+      directory: 'src/content/posts/',
+      getItemSlug: (data) => data.slug,
+      schema: {
+        titlle: fields.text({
+          label: 'Title',
+          validation: { length: { min: 4 } },
+        }),
+        slug: fields.text({
+          label: 'Slug',
+          validation: { length: { min: 4 } },
+        }),
+        publishedDate: fields.date({
+          label: 'Published Date',
+        }),
+        content: fields.document({
+          label: 'Content',
+          formatting: true,
+          dividers: true,
+          links: true,
+          layouts: [
+            [1, 1],
+            [1, 1, 1],
+            [2, 1],
+            [1, 2, 1],
+          ],
+        }),
+      },
+    }),
+  },
+})
+```
+
+### Adding a keystatic-page file to the root of the project
+
+```
+// keystatic-page.tsx
+
+import { makePage } from '@keystatic/astro/ui'
+import config from './keystatic-config'
+
+export const Keystatic = makePage(config)
+```
+
+### Modifying the astro.config file
+
+```javascript
+// astro.config.mjs
+
+import { defineConfig } from 'astro/config';
+import react from '@astrojs/react'
+import vercel from '@astrojs/vercel/serverless';
+
+// https://astro.build/config
+export default defineConfig({
+  output: 'server',
+  adapter: vercel(),
+  integrations: [react()]
+});
+```
+
+Now that we have the pages and config we need at the root level we are now going to create our pages for Keystatic
+
+### Our Keystatic admin page
+
+This is the page we will go to when we hit the `your-url/keystatic` path
+
+```javascript
+// /pages/keystatic/[...params].astro
+
+---
+import { Keystatic } from '../../../keystatic-page'
+---
+
+<Keystatic client:only="react" />
+```
+
+### Keystatic API page
+
+```typescript
+// /pages/api/keystatic/[...params].ts
+
+import { makeHandler } from '@keystatic/astro/api'
+import config from '../../../../keystatic-config'
+
+export const all = makeHandler({
+  config,
+  secret: import.meta.env.KEYSTATIC_SECRET,
+  clientId: import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID,
+  clientSecret: import.meta.env.KEYSTATIC_GITHUB_CLIENT_SECRET,
+})
+```
+
+### Starting the server to create a GitHub App
+
+Now that we are setup we can run `npm run dev` and navigate to our local host as usual.
+
+Going to the `/keystatic` path for the first time it will generate the GitHub App on the account in the `keystatic.config/tsx` file.
+
+> When you go through the building of the GitHub app you get the success message followed by **Not Found** try restarting the Astro server and navigate to the `/keystatic` path name again.
+
+When you have the Keystatic admin running create a post, and we will move into getting that onto the page.
+
+---
+
+## Querying Keystatic
+
+Keystatic uses Markdoc for all of it's content, which requires the use of the reader which comes with Keystatic. On `/pages/index.astro` we will use the following to get all of our posts to display as cards.
+
+```typescript
+async function getPostsData() {
+  const reader = createReader('', config)
+  const postSlugs = await reader.collections.posts.list()
+  const postData = await Promise.all(
+    postSlugs.map(async (slug) => {
+      const post = await reader.collections.posts.read(slug)
+      const content = (await post?.content()) || []
+      return {
+        ...post,
+        content,
+      }
+    })
+  )
+  return postData
+}
+```
+
+This gets us our posts array of all the items we have in our collection.
+
+### `[slug].astro`
+
+We are going to use dynamic routes and page rendering to create each post from our blog. To do this, we need a few pieces.
+
+First, we will use `getStaticPaths()` to generate a new page for each of our posts, and we will also get the slug from each page generated.
+
+```typescript
+export async function getStaticPaths() {
+  const reader = createReader('', config)
+  const postSlugs = await reader.collections.posts.list()
+    return [
+      postSlugs.map((slug) => ({
+	params: { slug: slug },
+      })),
+    ]
+}
+```
+
+We will use the slug and the reader from Keystatic to get the post of the page we're on.
+
+```typescript
+export async function getPostPropsForSlug({ slug }: { slug: string }) {
+  const reader = createReader('', config)
+  const post = await reader.collections.posts.read(slug)
+  const content = await (post?.content() || [])
+  return {
+    props: {
+      ...post,
+      content,
+    },
+  }
+}
+```
+
+We're then going to tie all of this together by getting the current page we're on, so we show the correct page.
+
+```typescript
+const { slug } = Astro.params
+if (typeof slug !== 'string') {
+  throw new Error('Boom fail build')
+}
+
+const { props } = await getPostPropsForSlug({ slug })
+```
+
+---
+
+## Launching to Vercel
+
+To launch our Astro + Keystatic project, we will be using the [_hybrid rendering_](https://docs.astro.build/en/guides/server-side-rendering/#hybrid-rendering) feature available in Astro v2. This is where our front-end pages in Astro will still be statically built but, the Keystatic pages will be Server Side Rendered. To do this, we need to know a few things.
+
+## Prerender
+
+For each file we want to render in the `/pages` directory we want to add the line:
+
+```typescript
+export const prerender = true
+```
+
+This will notify Astro that at build time we want to statically generate this page.
+
+The other thing we need is inside our `astro.config.mjs` file. Specifically the `const isVercelBuild` and the line about the adapter.
+
+```typescript
+import { defineConfig } from 'astro/config';
+import react from '@astrojs/react'
+import vercel from '@astrojs/vercel/serverless';
+import node from '@astrojs/node'
+
+const isVercelBuild = process.env.CI || process.env.VERCEL
+
+export default defineConfig({
+  output: 'server',
+  adapter: isVercelBuild ? vercel(): node({mode: 'standalone'}),
+  integrations: [react()]
+});
+
+```
+
+The **CI** and **VERCEL** environment variables are accessible when the build is running through Vercel letting the project know we need to use the Vercel adapter for our project. When we are running locally we will use the **node** adapter run in _standalone_ giving us the ability to build and preview using Astro locally.
