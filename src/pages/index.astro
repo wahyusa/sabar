@@ -19,10 +19,9 @@ async function getPostsData() {
   const postData = await Promise.all(
     postSlugs.map(async (slug) => {
       const post = await reader.collections.posts.read(slug)
-      const content = (await post?.content) || []
       return {
         ...post,
-        content,
+		slug
       }
     })
   )
@@ -69,6 +68,7 @@ import Card from '../components/Card.astro';
       {
         posts.map((post) => (
           <Card
+		  	slug={post.slug || ''}
             title={post.title || ''}
             body={post.summary || ''}
             href={post.slug || '/'}
