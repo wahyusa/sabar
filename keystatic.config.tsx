@@ -22,7 +22,7 @@ export default config({
       label: 'Posts',
       path: 'src/content/posts/*',
       // directory: 'src/content/posts/',
-      slugField: 'title_2',
+      slugField: 'title',
       schema: {
         title: fields.slug({
           name: {
