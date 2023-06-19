@@ -24,11 +24,7 @@ export default config({
       // directory: 'src/content/posts/',
       slugField: 'title_2',
       schema: {
-        title: fields.text({
-          label: 'Title',
-          validation: { length: { min: 4 } },
-        }),
-        title_2: fields.slug({
+        title: fields.slug({
           name: {
             label: 'Title',
             description: 'The title of the post',
