@@ -22,15 +22,22 @@ export default config({
       label: 'Posts',
       path: 'src/content/posts/*',
       // directory: 'src/content/posts/',
-      slugField: 'slug',
+      slugField: 'title_2',
       schema: {
         title: fields.text({
           label: 'Title',
           validation: { length: { min: 4 } },
         }),
-        slug: fields.text({
-          label: 'Slug',
-          validation: { length: { min: 4 } },
+        title_2: fields.slug({
+          name: {
+            label: 'Title',
+            description: 'The title of the post',
+          },
+          // Optional slug label overrides
+          slug: {
+            label: 'SEO-friendly slug',
+            description: 'This will define the file/folder name for this entry'
+          }
         }),
         publishedDate: fields.date({
           label: 'Published Date',
