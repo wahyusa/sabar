@@ -1,60 +1,82 @@
-import { config, fields, singleton, collection } from '@keystatic/core'
+// keystatic.config.tsx
+import { config, fields, collection, component } from "@keystatic/core";
+import NoPreview from "./src/components/NoPreview";
 
 export default config({
   storage: {
-    kind: 'github',
-    repo: {
-	    owner: 'wahyusa',
-	    name: 'sabar'
-    },
-  },
-  singletons: {
-    homepage: singleton({
-      label: 'Homepage',
-      path: 'src/content/_homepage',
-      schema: {
-        headline: fields.text({ label: 'Headline' }),
-      },
-    }),
+    kind: "local",
   },
   collections: {
-    posts: collection({
-      label: 'Posts',
-      path: 'src/content/posts/*',
-      // directory: 'src/content/posts/',
-      slugField: 'title',
+    authors: collection({
+      label: "Authors",
+      path: "src/content/authors/*",
+      slugField: "name",
       schema: {
-        title: fields.slug({
+        name: fields.slug({
           name: {
-            label: 'Title',
-            description: 'The title of the post',
+            label: "Name",
+            validation: {
+              length: {
+                min: 1,
+              },
+            },
           },
-          // Optional slug label overrides
-          slug: {
-            label: 'SEO-friendly slug',
-            description: 'This will define the file/folder name for this entry'
+        }),
+        role: fields.text({ label: "Role" }),
+        avatar: fields.image({
+          label: "Author avatar",
+          directory: "public/images/authors",
+        }),
+      },
+    }),
+    posts: collection({
+      label: "Posts",
+      slugField: "title",
+      path: "src/content/posts/*",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.slug({ name: { label: "Title" } }),
+        authors: fields.array(
+          fields.relationship({
+            label: "Post author",
+            collection: "authors",
+          }),
+          {
+            label: "Authors",
+            validation: { length: { min: 1 } },
+            itemLabel: (props) => props.value || "Please select an author",
           }
-        }),
-        publishedDate: fields.date({
-          label: 'Published Date',
-        }),
+        ),
         summary: fields.text({
-          label: 'Summary',
-          validation: { length: { min: 4, max: 120 } },
+          label: "Summary",
+          validation: { length: { min: 4 } },
+          multiline: true,
+        }),
+        publishedDate: fields.date({ label: "Published Date" }),
+        coverImage: fields.image({
+          label: "Cover image",
+          directory: "public/images/posts",
         }),
         content: fields.document({
-          label: 'Content',
+          label: "Content",
+          componentBlocks: {
+            aside: component({
+              label: "Aside",
+              preview: (props) => {
+                return <NoPreview />;
+              },
+              schema: {},
+            }),
+          },
           formatting: true,
           dividers: true,
           links: true,
-          layouts: [
-            [1, 1],
-            [1, 1, 1],
-            [2, 1],
-            [1, 2, 1],
-          ],
+          images: {
+            directory: "public/images/posts",
+            publicPath: "images/posts",
+          },
         }),
       },
     }),
   },
-})
+});
