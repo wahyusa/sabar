@@ -1,5 +1,7 @@
 ---
 import HomeLayout from "../layouts/HomeLayout.astro";
+// import dummy articles.json
+import articles from "../dummy/articles.json";
 ---
 
 <HomeLayout pageTitle="Home Design v1">
@@ -128,102 +130,19 @@ import HomeLayout from "../layouts/HomeLayout.astro";
         <main
           class="selected-text order-2 col-span-12 grid px-4 ring-0 ring-inset md:col-span-8 md:px-0"
         >
-          <article class="mt-8 first:mt-0">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Google Cloud Platform: Solusi Komputasi Awan yang Efisien dan
-              Ramah Lingkungan
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Mengenal Layanan Google Cloud Fundamentals: Core Infrastructure
-              dalam Bahasa Indonesia
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Cara Memanfaatkan Google Cloud Storage, Google Cloud SQL, dan
-              BigQuery untuk Menyimpan dan Menganalisis Data Besar
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Keunggulan Google Cloud dalam Mendukung Transformasi Digital di
-              Indonesia
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Google Cloud Buka Region Baru di Jakarta: Apa Manfaatnya bagi
-              Pelanggan dan Pengguna?
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Google Cloud vs AWS vs Azure vs Alibaba Cloud: Perbandingan
-              Layanan Komputasi Awan Terpopuler di Indonesia
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Google Kubernetes Engine: Platform untuk Mengelola dan Menjalankan
-              Aplikasi Kontainer di Google Cloud
-            </h3>
-          </article>
-          <article class="mt-8">
-            <time
-              class="text-xs/3 font-bold uppercase tracking-wider text-gray-600"
-              >30 Jul 2023</time
-            >
-            <h3
-              class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300"
-            >
-              Google App Engine: Cara Mudah Membangun dan Menyebarkan Aplikasi
-              Web di Google Cloud
-            </h3>
-          </article>
+          <!-- map() from articles json -->
+          {
+            articles.map((article) => (
+              <article class="mt-8 first:mt-0">
+                <time class="text-xs/3 font-bold uppercase tracking-wider text-gray-600">
+                  {article.date}
+                </time>
+                <h3 class="line-clamp-3 text-lg/7 font-bold transition-colors duration-300">
+                  {article.title}
+                </h3>
+              </article>
+            ))
+          }
           <div>
             <ul class="flex flex-wrap items-center justify-center gap-4 py-10">
               <li class="my-2">
