@@ -55,5 +55,5 @@ ul li a:hover {
 .selected-text::selection,
 .selected-text *::selection {
   background-color: var(--yellow-8);
-  color: var(--mauve-12);
+  color: black;
 }
