@@ -1,0 +1,10 @@
+---
+export interface Props {
+  href?: string;
+}
+const { href } = Astro.props;
+---
+
+<a {href} class="tracking-wide text-[var(--blue-11)] underline">
+  <slot />
+</a>
