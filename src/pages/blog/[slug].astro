@@ -11,11 +11,11 @@ export async function getStaticPaths() {
 // 2. For your template, you can get the entry directly from the prop
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-import HomeLayout from "../layouts/HomeLayout.astro";
-import Header from "../components/Header.astro";
-import Aside from "../components/Aside.astro";
-import Footer from "../components/Footer.astro";
-import RelatedPosts from "../components/RelatedPosts.astro";
+import HomeLayout from "../../layouts/HomeLayout.astro";
+import Header from "../../components/Header.astro";
+import Aside from "../../components/Aside.astro";
+import Footer from "../../components/Footer.astro";
+import RelatedPosts from "../../components/RelatedPosts.astro";
 ---
 
 <HomeLayout pageTitle="Article View Design v1">

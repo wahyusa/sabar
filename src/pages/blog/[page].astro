@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Pagination from "../../components/Pagination.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const articlePages = await getCollection("blog");
+  // Generate pages from our array of astronauts, with 2 to a page
+  return paginate(articlePages, { pageSize: 2 });
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props;
+console.log(page);
+---
+
+<!--Display the current page number. Astro.params.page can also be used!-->
+<h1>Page {page.currentPage}</h1>
+<ul>
+  <!--List the array of astronaut info-->
+  {page.data.map(({ astronaut }) => <li>{astronaut}</li>)}
+</ul>
+
+<Pagination page={page} />
