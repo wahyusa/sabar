@@ -1,0 +1,11 @@
+---
+export interface Props {
+  imgUrl?: string;
+}
+const { imgUrl } = Astro.props;
+---
+
+<figure class="mt-6">
+  <img src={imgUrl} alt="A cat." />
+  <figcaption>A cat.</figcaption>
+</figure>
