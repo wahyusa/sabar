@@ -1,16 +1,30 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
-
-import markdoc from "@astrojs/markdoc";
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind({
-    // Example: Disable injecting a basic `base.css` import on every page.
-    // Useful if you need to define and/or import your own custom `base.css`.
-    applyBaseStyles: false
-  }), markdoc()],
-  output: "hybrid",
-  adapter: vercel()
+	integrations: [
+		starlight({
+			title: 'Docs with Tailwind',
+			social: {
+				github: 'https://github.com/withastro/starlight',
+			},
+			sidebar: [
+				{
+					label: 'Guides',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Example Guide', link: '/guides/example/' },
+					],
+				},
+				{
+					label: 'Reference',
+					autogenerate: { directory: 'reference' },
+				},
+			],
+			customCss: ['./src/tailwind.css'],
+		}),
+		tailwind({ applyBaseStyles: false }),
+	],
 });
