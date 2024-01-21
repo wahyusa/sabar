@@ -36,3 +36,6 @@ packages/**/e2e/**/fixtures/**/env.d.ts
 examples/**/.astro/
 examples/**/env.d.ts
 node_modules
+
+# proxy
+.npmrc
