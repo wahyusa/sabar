@@ -1,20 +1,60 @@
 ---
-// import "../styles/global.css";
-const { pageTitle } = Astro.props;
+import "@/styles/globals.css";
+
+const {
+  pageTitle = "Wahyu Syamsul A'lam",
+  withHeader,
+  withFooter,
+} = Astro.props;
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+
+    <!-- Add your icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="preload"
+      href="/fonts/InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/InterVariable-Italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
   <body>
-    <header>Header component here</header>
-    <h1 style="color:red;font-size:2rem">{pageTitle}</h1>
+    {withHeader && <Header />}
     <slot />
-    <footer>Footer component here</footer>
+    {withFooter && <Footer />}
+    <script is:inline>
+      let prevScrollpos = window.scrollY;
+      const header = document.getElementsByTagName("header")[0];
+
+      window.onscroll = function () {
+        let currentScrollPos = window.scrollY;
+        if (prevScrollpos > currentScrollPos) {
+          header.style.top = "0";
+        } else {
+          header.style.top = "-68px"; // Adjust this value to match the height of your header
+        }
+        prevScrollpos = currentScrollPos;
+      };
+    </script>
   </body>
 </html>

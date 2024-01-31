@@ -1,0 +1,12 @@
+---
+const props = Astro.props;
+---
+
+<figure class="my-6 flex flex-col space-y-3">
+  <img class="object-cover" src={props.src} alt={props.alt} />
+  <figcaption
+    class="inline-block text-center text-balance italic text-sm bg-muted py-1 rounded-md"
+  >
+    {props.caption}
+  </figcaption>
+</figure>

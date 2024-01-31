@@ -1,0 +1,22 @@
+---
+const { title, url, description, pubDate } = Astro.props;
+const date = new Date(pubDate);
+const formattedDate = date.toLocaleString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<article class="flex flex-col">
+  <p class="text-sm">
+    {formattedDate}
+  </p>
+
+  <h2 class="text-xl font-semibold tracking-tight">
+    <a class="primary-link" href={url}>{title}</a>
+  </h2>
+  <p class="leading-7 [&:not(:first-child)]:mt-2">
+    {description}
+  </p>
+</article>

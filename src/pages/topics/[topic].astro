@@ -1,10 +1,28 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ArticleCard from "../components/ArticleCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
 
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  const uniqueTopics = [
+    ...new Set(allPosts.map((post) => post.data.topics).flat()),
+  ];
+
+  return uniqueTopics.map((topic) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.topics.includes(topic)
+    );
+    return {
+      params: { topic },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { topic } = Astro.params;
+const { posts } = Astro.props;
 const pageTitle = "Blog by Wahyu Syamsul A'lam";
-const allPosts = await getCollection("posts");
 ---
 
 <BaseLayout pageTitle={pageTitle} withHeader withFooter>
@@ -15,8 +33,11 @@ const allPosts = await getCollection("posts");
       id="article-lists"
       class="flex flex-col w-full md:max-w-[480px] flex-1 px-6 space-y-8 lg:pr-4"
     >
+      <h1 class="text-xl">
+        List of posts in topic <span class="font-bold capitalize">{topic}</span>
+      </h1>
       {
-        allPosts.map((post) => (
+        posts.map((post) => (
           <ArticleCard
             url={`/posts/${post.slug}/`}
             title={post.data.title}

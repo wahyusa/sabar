@@ -1,1 +1,11 @@
-<!-- this will use base layout, then show all posts with pagination -->
+---
+import BaseLayout from "./BaseLayout.astro";
+---
+
+<BaseLayout>
+  <main
+    class="max-w-screen-md mx-auto min-h-dvh justify-center flex flex-col items-start px-6 lg:px-0"
+  >
+    <slot />
+  </main>
+</BaseLayout>

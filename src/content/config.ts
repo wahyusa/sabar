@@ -8,11 +8,11 @@ const postsCollection = defineCollection({
     pubDate: z.date(),
     description: z.string(),
     author: z.string(),
-    image: z.object({
-      url: z.string(),
-      alt: z.string(),
-    }),
-    tags: z.array(z.string()),
+    // image: z.object({
+    //   url: z.string(),
+    //   alt: z.string(),
+    // }),
+    topics: z.array(z.string()),
   }),
 });
 // Export a single `collections` object to register your collection(s)

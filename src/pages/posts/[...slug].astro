@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import SinglePostLayout from "../../layouts/SinglePostLayout.astro";
+import MDXComponentMapping from "@/lib/MDXComponentMapping";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
@@ -15,5 +16,5 @@ const { Content } = await entry.render();
 ---
 
 <SinglePostLayout frontmatter={entry.data}>
-  <Content />
+  <Content components={MDXComponentMapping} />
 </SinglePostLayout>
