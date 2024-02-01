@@ -115,6 +115,6 @@ Alternate glyph set that increases visual difference between similar-looking cha
     @apply bg-transparent; /* Reset the background color to use shiki */
   }
   .primary-link {
-    @apply text-blue-800 hover:underline dark:text-sky-300;
+    @apply text-blue-900 hover:underline dark:text-sky-300;
   }
 }

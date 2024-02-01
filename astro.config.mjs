@@ -14,11 +14,12 @@ export default defineConfig({
   }),
   markdown: {
     shikiConfig: { theme: beautifulDracula, wrap: true },
-    gfm: true,
   },
   site: "https://sabar.my.id",
   integrations: [
-    mdx(),
+    mdx({
+      gfm: true,
+    }),
     react(),
     tailwind({
       applyBaseStyles: false,
