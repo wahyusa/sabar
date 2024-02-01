@@ -6,11 +6,12 @@ import { ModeToggle } from "@/components/ModeToggle";
 ---
 
 <HomeLayout>
-  
-  <img src="https://via.placeholder.com/100" alt="avatar" />
-  <h1
-    class="mt-10 scroll-m-20 text-3xl font-semibold tracking-tight transition-colors"
-  >
+  <img
+    src="pixel.png"
+    alt="pixel avatar"
+    class="aspect-square rounded-full shadow-sm scroll-m-20 size-24 object-cover"
+  />
+  <h1 class="mt-6 text-3xl font-semibold tracking-tight transition-colors">
     Wahyu Syamsul A&rsquo;lam
   </h1>
   <div
@@ -23,7 +24,6 @@ import { ModeToggle } from "@/components/ModeToggle";
     </p>
   </div>
 
-
   <!-- social links -->
   <div
     class="flex h-5 items-center space-x-2 text-sm mb-4 [&:not(:first-child)]:mt-6"
@@ -32,7 +32,10 @@ import { ModeToggle } from "@/components/ModeToggle";
     <Separator orientation="vertical" />
     <a class={buttonVariants({ variant: "outline" })} href="/topics">Topics</a>
     <Separator orientation="vertical" />
-    <a class={buttonVariants({ variant: "outline" })} href="https://github.com/wahyusa">GitHub</a>
+    <a
+      class={buttonVariants({ variant: "outline" })}
+      href="https://github.com/wahyusa">GitHub</a
+    >
     <Separator orientation="vertical" />
     <div>
       <ModeToggle client:load />
