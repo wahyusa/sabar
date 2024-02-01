@@ -3,12 +3,17 @@ import HomeLayout from "@/layouts/HomeLayout.astro";
 import { Separator } from "@/components/ui/separator";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
+import { Picture } from "astro:assets";
+import PixelAvatar from "@/images/pixel.png";
 ---
 
 <HomeLayout>
-  <img
-    src="pixel.png"
-    alt="pixel avatar"
+  <Picture
+    src={PixelAvatar}
+    alt="My pixel avatar!"
+    width={96}
+    height={96}
+    formats={["avif", "webp"]}
     class="aspect-square rounded-full shadow-sm scroll-m-20 size-24 object-cover"
   />
   <h1 class="mt-6 text-3xl font-semibold tracking-tight transition-colors">
