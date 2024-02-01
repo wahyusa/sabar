@@ -361,6 +361,13 @@ Alternate glyph set that increases visual difference between similar-looking cha
   pre {
     @apply my-6 p-4;
   }
+  code {
+    @apply bg-muted py-0.5 px-1 rounded-sm;
+  }
+
+  pre code {
+    @apply bg-transparent; /* Reset the background color to use shiki */
+  }
   .primary-link {
     @apply text-blue-800 hover:underline dark:text-sky-300;
   }

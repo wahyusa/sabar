@@ -7,6 +7,9 @@ const formattedDate = date.toLocaleString("en-US", {
   day: "numeric",
   year: "numeric",
 });
+import {
+  formatTopic,
+} from "@/lib/topicUtils.js";
 import SinglePostStickySideNav from "@/components/SinglePostStickySideNav.astro";
 ---
 
@@ -30,7 +33,7 @@ import SinglePostStickySideNav from "@/components/SinglePostStickySideNav.astro"
           frontmatter.topics.map((topic) => (
             <p class="capitalize">
               <a class="primary-link" href={`/topics/${topic}`}>
-                {topic}
+                {formatTopic(topic)}
               </a>
             </p>
           ))

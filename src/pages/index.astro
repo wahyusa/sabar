@@ -6,31 +6,33 @@ import { ModeToggle } from "@/components/ModeToggle";
 ---
 
 <HomeLayout>
+  
+  <img src="https://via.placeholder.com/100" alt="avatar" />
   <h1
     class="mt-10 scroll-m-20 text-3xl font-semibold tracking-tight transition-colors"
   >
     Wahyu Syamsul A&rsquo;lam
   </h1>
   <div
-    class="flex items-center justify-between [&:not(:first-child)]:mt-6 w-full"
+    class="flex flex-col md:flex-row items-center justify-between [&:not(:first-child)]:mt-6 w-full"
   >
     <p class="leading-7 max-w-[480px] text-balance">
       I&rsquo;m a tech enthusiast based in Indonesia, enjoying my free time to
       write about tech and programming. 1 year professional experience on web
       development with Tailwind CSS, Laravel, Git.
     </p>
-    <img src="https://via.placeholder.com/100" alt="avatar" />
   </div>
+
 
   <!-- social links -->
   <div
-    class="flex h-5 items-center space-x-4 text-sm mb-4 [&:not(:first-child)]:mt-6"
+    class="flex h-5 items-center space-x-2 text-sm mb-4 [&:not(:first-child)]:mt-6"
   >
     <a class={buttonVariants({ variant: "outline" })} href="/blog">Blog</a>
     <Separator orientation="vertical" />
-    <a class={buttonVariants({ variant: "outline" })} href="/blog">Projects</a>
+    <a class={buttonVariants({ variant: "outline" })} href="/topics">Topics</a>
     <Separator orientation="vertical" />
-    <a class={buttonVariants({ variant: "outline" })} href="/blog">GitHub</a>
+    <a class={buttonVariants({ variant: "outline" })} href="https://github.com/wahyusa">GitHub</a>
     <Separator orientation="vertical" />
     <div>
       <ModeToggle client:load />

@@ -1,5 +1,5 @@
 ---
-const { title, url, description, pubDate } = Astro.props;
+const { title, url, description, pubDate, isFullHeight } = Astro.props;
 const date = new Date(pubDate);
 const formattedDate = date.toLocaleString("en-US", {
   month: "long",
@@ -8,7 +8,7 @@ const formattedDate = date.toLocaleString("en-US", {
 });
 ---
 
-<article class="flex flex-col">
+<article class={`flex flex-col ${isFullHeight ? "md:min-h-[80dvh]" : ""}`}>
   <p class="text-sm">
     {formattedDate}
   </p>
