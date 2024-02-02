@@ -30,6 +30,8 @@ export async function getStaticPaths() {
 
 const { topic } = Astro.params;
 const { posts, topics } = Astro.props;
+import { sortPostsByDate } from "@/lib/postUtils.js";
+const sortedPosts = sortPostsByDate(posts);
 ---
 
 <BaseLayout
@@ -50,8 +52,8 @@ const { posts, topics } = Astro.props;
         >
       </h1>
       {
-        posts.length < 2
-          ? posts.map((post) => (
+        sortedPosts.length < 2
+          ? sortedPosts.map((post) => (
               <ArticleCard
                 isFullHeight
                 url={`/posts/${post.slug}/`}
@@ -60,7 +62,7 @@ const { posts, topics } = Astro.props;
                 pubDate={post.data.pubDate}
               />
             ))
-          : posts.map((post) => (
+          : sortedPosts.map((post) => (
               <ArticleCard
                 url={`/posts/${post.slug}/`}
                 title={post.data.title}

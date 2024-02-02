@@ -10,6 +10,8 @@ import ArticleCard from "../components/ArticleCard.astro";
 const pageTitle = "Blog by Wahyu Syamsul A'lam";
 const allPosts = await getAllPosts();
 const topics = [...new Set(allPosts.map((post) => post.data.topics).flat())];
+import { sortPostsByDate } from "@/lib/postUtils.js";
+const sortedPosts = sortPostsByDate(allPosts);
 ---
 
 <BaseLayout pageTitle={pageTitle} withHeader withFooter>
@@ -21,8 +23,8 @@ const topics = [...new Set(allPosts.map((post) => post.data.topics).flat())];
       class="flex flex-col w-full md:max-w-[480px] flex-1 px-6 space-y-8 lg:pr-4"
     >
       {
-        allPosts.length < 2
-          ? allPosts.map((post) => (
+        sortedPosts.length < 2
+          ? sortedPosts.map((post) => (
               <ArticleCard
                 isFullHeight
                 url={`/posts/${post.slug}/`}
@@ -31,7 +33,7 @@ const topics = [...new Set(allPosts.map((post) => post.data.topics).flat())];
                 pubDate={post.data.pubDate}
               />
             ))
-          : allPosts.map((post) => (
+          : sortedPosts.map((post) => (
               <ArticleCard
                 url={`/posts/${post.slug}/`}
                 title={post.data.title}
