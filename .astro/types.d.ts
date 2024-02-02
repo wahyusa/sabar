@@ -192,6 +192,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdx"] };
+"my-blog-roadmap-2024.mdx": {
+	id: "my-blog-roadmap-2024.mdx";
+  slug: "my-blog-roadmap-2024";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdx"] };
 };
 
 	};

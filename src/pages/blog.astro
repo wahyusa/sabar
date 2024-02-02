@@ -21,7 +21,7 @@ const topics = [...new Set(allPosts.map((post) => post.data.topics).flat())];
       class="flex flex-col w-full md:max-w-[480px] flex-1 px-6 space-y-8 lg:pr-4"
     >
       {
-        allPosts.length < 3
+        allPosts.length < 2
           ? allPosts.map((post) => (
               <ArticleCard
                 isFullHeight

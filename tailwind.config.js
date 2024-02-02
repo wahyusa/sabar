@@ -84,5 +84,22 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addComponents }) {
+      addComponents({
+        "ul.contains-task-list": {
+          marginTop: "1.5rem",
+          marginBottom: "1.5rem",
+          // marginLeft: "1.5rem",
+        },
+        "ul.contains-task-list li.task-list-item": {
+          marginTop: "0.5rem",
+        },
+        "ul.contains-task-list li.task-list-item input[type=checkbox]": {
+          marginRight: "0.5rem",
+        },
+      });
+    },
+  ],
 };
