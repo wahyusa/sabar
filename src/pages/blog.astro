@@ -22,6 +22,7 @@ const sortedPosts = sortPostsByDate(allPosts);
       id="article-lists"
       class="flex flex-col w-full md:max-w-[480px] flex-1 px-6 space-y-8 lg:pr-4"
     >
+      <h1 class="sr-only">Latest blog post by Wahyu Syamsul A&rsquo;lam</h1>
       {
         sortedPosts.length < 2
           ? sortedPosts.map((post) => (
