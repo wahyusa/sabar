@@ -7,13 +7,16 @@ const formattedDate = date.toLocaleString("en-US", {
   day: "numeric",
   year: "numeric",
 });
-import {
-  formatTopic,
-} from "@/lib/topicUtils.js";
+import { formatTopic } from "@/lib/topicUtils.js";
 import SinglePostStickySideNav from "@/components/SinglePostStickySideNav.astro";
 ---
 
-<BaseLayout pageTitle={frontmatter.title} withHeader withFooter>
+<BaseLayout
+  pageTitle={frontmatter.title}
+  pageDescription={frontmatter.description}
+  withHeader
+  withFooter
+>
   <main class="max-w-screen-md relative mx-auto flex flex-col mt-10">
     <div
       class="px-6 md:px-0 flex flex-col justify-center items-center text-center"
@@ -24,11 +27,11 @@ import SinglePostStickySideNav from "@/components/SinglePostStickySideNav.astro"
         {frontmatter.title}
       </h1>
       <p class="leading-7 text-sm mt-6">
-        Written by: {frontmatter.author} on
+        {frontmatter.author} &bull;
         {formattedDate}
       </p>
       <div class="flex leading-7 text-sm items-center space-x-2">
-        <span>Topics:</span>
+        <h2>Topics:</h2>
         {
           frontmatter.topics.map((topic) => (
             <p class="capitalize">

@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 
 const {
   pageTitle = "Wahyu Syamsul A'lam",
+  pageDescription = "Blog written and published by Wahyu Syamsul A'lam with topics around tech and programming",
   withHeader,
   withFooter,
 } = Astro.props;
@@ -27,6 +28,7 @@ import Footer from "@/components/Footer.astro";
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={pageDescription} />
     <title>{pageTitle}</title>
   </head>
   <body>
