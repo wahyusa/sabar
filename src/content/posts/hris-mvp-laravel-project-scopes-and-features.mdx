@@ -1,0 +1,50 @@
+---
+title: "HRIS with Laravel 10 Project Scope and Features"
+# year-month-day
+pubDate: 2024-02-03 11:42:00
+description: "Building MVP project with laravel 10 in focus on core features and implementing convention also with best practices and git I am using Windows with Laragon"
+author: "Wahyu Syamsul A'lam"
+topics: ["project", "laravel", "git", "web-development"]
+series: "laravel-10-project-hris-mvp-core-web-app"
+---
+
+Hello, developers! In this blog post, I will show you how to create a HRIS web app MVP core with Laravel 10. Laravel is a popular PHP framework that offers a robust set of tools and features for building web applications. A HRIS (Human Resources Information System) is a software that helps manage various aspects of human resources, such as employee profiles, leave management, payroll management, and more. An MVP (Minimum Viable Product) is a version of a product that has enough features to satisfy early customers and provide feedback for future development. By creating a HRIS web app MVP core, you can launch your product quickly and test its viability in the market.
+
+To create a HRIS web app MVP core with Laravel 10, we will need to implement the following features:
+
+1. User Authentication and Roles:
+    - Implement secure login functionality for different user roles (admin, faculty, staff).
+    - Ensure that users can access relevant features based on their roles.
+
+2. Employee Profiles:
+    - Allow users to create and manage their profiles.
+    - Capture essential information such as name, contact details, position, and department.
+
+3. Leave Management:
+    - Enable employees to request and track leave (sick leave, vacation, etc.).
+    - Provide an approval workflow for managers or HR personnel.
+
+4. Payroll Management:
+    - Automate employee pay schedules.
+    - Store time and attendance data.
+    - Calculate taxes, benefits, and withholdings.
+
+5. Announcements and Notifications:
+    - Allow HR or management to share internal announcements.
+    - Notify employees about important updates or events.
+
+These are the core features that will make up our HRIS web app MVP. Of course, you can add more features as you see fit, but remember to keep your MVP lean and focused on solving the main problem of your customers. In the next sections, I will walk you through the steps of setting up Laravel 10 and building each feature in detail. Let's get started!
+
+## Setting Up Laravel 10
+
+First, we need to install Laravel 10 on our local development environment. Make sure you have PHP, Composer, and MySQL installed on your machine. Then, open a terminal and run the following commands:
+
+```bash
+# Install Laravel Installer
+composer global require laravel/installer
+
+# Create a new Laravel project
+laravel new hris-mvp
+```
+
+This will create a new Laravel project named `hris-mvp`. Next, use Laragon.

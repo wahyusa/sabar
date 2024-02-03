@@ -190,14 +190,35 @@ declare module 'astro:content' {
   slug: "hello-world";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
+} & { render(): Render[".mdx"] };
+"hris-mvp-laravel-employee-management-feature.mdx": {
+	id: "hris-mvp-laravel-employee-management-feature.mdx";
+  slug: "hris-mvp-laravel-employee-management-feature";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".mdx"] };
+"hris-mvp-laravel-project-scopes-and-features.mdx": {
+	id: "hris-mvp-laravel-project-scopes-and-features.mdx";
+  slug: "hris-mvp-laravel-project-scopes-and-features";
+  body: string;
+  collection: "posts";
+  data: any
+} & { render(): Render[".mdx"] };
+"hris-mvp-laravel-setup-laravel.mdx": {
+	id: "hris-mvp-laravel-setup-laravel.mdx";
+  slug: "hris-mvp-laravel-setup-laravel";
+  body: string;
+  collection: "posts";
+  data: any
 } & { render(): Render[".mdx"] };
 "my-blog-roadmap-2024.mdx": {
 	id: "my-blog-roadmap-2024.mdx";
   slug: "my-blog-roadmap-2024";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".mdx"] };
 };
 
@@ -209,5 +230,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = typeof import("../src/content/config");
+	type ContentConfig = never;
 }

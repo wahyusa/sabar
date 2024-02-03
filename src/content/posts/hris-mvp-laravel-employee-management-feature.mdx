@@ -1,0 +1,83 @@
+---
+title: "HRIS with Laravel 10 Employee Management"
+# year-month-day
+pubDate: 2024-02-03 12:03:00
+description: "Building MVP project with laravel 10 part 3 Create an employee management feature with laravel 10"
+author: "Wahyu Syamsul A'lam"
+topics: ["laravel", "git", "mvc"]
+series: "laravel-10-project-hris-mvp-core-web-app"
+---
+
+Welcome back to the third part of our series on building a HRIS (Human Resource Information System) with Laravel 10. In the previous parts, we have set up our project environment, installed Laravel 10, and created the database and migrations for our HRIS. If you haven't followed the previous parts, you can find them here:
+
+- Part 1: Setting up the project environment
+- Part 2: Installing Laravel 10 and creating the database
+
+In this part, we will focus on creating the employee management feature for our HRIS. This feature will allow us to add, edit, delete, and view employees in our system. We will also learn how to use Laravel's Eloquent ORM (Object-Relational Mapping) to interact with the database, and how to use Laravel's Blade templating engine to create dynamic views.
+
+## Creating the Employee Model
+
+The first step to create the employee management feature is to create the Employee model. A model is a class that represents a table in the database and provides methods to query and manipulate the data. Laravel's Eloquent ORM makes it easy to create and work with models.
+
+To create the Employee model, we can use the `php artisan make:model` command in the terminal:
+
+This will create a file called `Employee.php` in the `app/Models` directory. The file will contain a class called `Employee` that extends the `Model` class from Eloquent. By default, Eloquent will assume that the table name for this model is `employees`, which is the plural form of the class name. If we want to use a different table name, we can specify it in the `$table` property of the model:
+
+```php
+class Employee extends Model
+{
+    protected $table = 'employees';
+}
+```
+
+## Creating the Employee Controller
+
+Next, we need to create a controller to handle the employee management feature. A controller is a class that contains methods to handle HTTP requests and return responses. We can use the `php artisan make:controller` command to create a new controller:
+
+This will create a file called `EmployeeController.php` in the `app/Http/Controllers` directory. The file will contain a class called `EmployeeController` with methods to handle the employee management feature.
+
+## Creating the Employee Views
+
+Now that we have the Employee model and controller, we can create the views for the employee management feature. Views are files that contain the HTML and PHP code to display the user interface of our application. Laravel's Blade templating engine makes it easy to create dynamic views with reusable components.
+
+We will create the following views for the employee management feature:
+
+- A list view to display a list of employees
+- A form view to add or edit an employee
+- A confirmation view to delete an employee
+
+We can create the views in the `resources/views/employees` directory. We will create a new directory called `employees` to organize the views for the employee management feature. Inside this directory, we will create the following files:
+
+- `index.blade.php` for the list view
+- `form.blade.php` for the form view
+- `confirm.blade.php` for the confirmation view
+
+## Creating the Employee Routes
+
+Finally, we need to create the routes to handle the employee management feature. Routes are the entry points for HTTP requests in our application, and they map URLs to controller methods. We can create the routes in the `routes/web.php` file:
+
+```php
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
+Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::get('/employees/{employee}', [EmployeeController::class, 'show'])->name('employees.show');
+Route::get('/employees/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
+Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
+Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+```
+
+In this example, we have created routes for the following actions:
+
+- `GET /employees` to display the list of employees
+- `GET /employees/create` to display the form to add a new employee
+- `POST /employees` to store a new employee in the database
+- `GET /employees/{employee}` to display the details of a specific employee
+- `GET /employees/{employee}/edit` to display the form to edit a specific employee
+- `PUT /employees/{employee}` to update a specific employee in the database
+- `DELETE /employees/{employee}` to delete a specific employee from the database
+
+## Conclusion
+
+In this part, we have created the employee management feature for our HRIS. We have learned how to create a model, controller, views, and routes for the employee management feature, and how to use Laravel's Eloquent ORM and Blade templating engine. In the next part, we will continue to build the HRIS by adding more features to manage employees, such as departments, positions, and salaries.
+
+I hope you enjoyed this part of the series, and I look forward to seeing you in the next part! If you have any questions or feedback, please feel free to leave a comment below. Thank you for reading!

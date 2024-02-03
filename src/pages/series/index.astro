@@ -4,18 +4,13 @@ import {
   countPostsByTopic,
   formatTopic,
 } from "@/lib/topicUtils.js";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ArticleCard from "../components/ArticleCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
 
-const pageTitle = "Blog by Wahyu Syamsul A'lam";
 const allPosts = await getAllPosts();
 const topics = [...new Set(allPosts.map((post) => post.data.topics).flat())];
-import { sortPostsByDate } from "@/lib/postUtils.js";
-const sortedPosts = sortPostsByDate(allPosts);
-// utils/filterPostsBySeries.js
 function filterPostsBySeries(posts) {
   const seriesPosts = {};
-  const filteredPosts = [];
 
   for (const post of posts) {
     const series = post.data.series;
@@ -26,21 +21,22 @@ function filterPostsBySeries(posts) {
       ) {
         seriesPosts[series] = post;
       }
-    } else {
-      filteredPosts.push(post);
     }
   }
 
-  const allFilteredPosts = [...filteredPosts, ...Object.values(seriesPosts)];
-  return allFilteredPosts.sort(
+  return Object.values(seriesPosts).sort(
     (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
   );
 }
 
-const filteredPosts = filterPostsBySeries(sortedPosts);
+const seriesPosts = filterPostsBySeries(allPosts);
 ---
 
-<BaseLayout pageTitle={pageTitle} withHeader withFooter>
+<BaseLayout
+  pageTitle={`Blog post series by Wahyu Syamsul A'lam`}
+  withHeader
+  withFooter
+>
   <main
     class="max-w-screen-md mx-auto flex flex-col md:flex-row justify-center mt-10"
   >
@@ -50,20 +46,18 @@ const filteredPosts = filterPostsBySeries(sortedPosts);
     >
       <h1 class="sr-only">Latest blog post by Wahyu Syamsul A&rsquo;lam</h1>
       {
-        filteredPosts.length < 2
-          ? filteredPosts.map((post) => (
+        seriesPosts.length < 2
+          ? seriesPosts.map((post) => (
               <ArticleCard
                 isFullHeight
-                isSeries={!!post.data.series}
                 url={`/posts/${post.slug}/`}
                 title={post.data.title}
                 description={post.data.description}
                 pubDate={post.data.pubDate}
               />
             ))
-          : filteredPosts.map((post) => (
+          : seriesPosts.map((post) => (
               <ArticleCard
-                isSeries={!!post.data.series}
                 url={`/posts/${post.slug}/`}
                 title={post.data.title}
                 description={post.data.description}

@@ -1,17 +1,29 @@
 ---
-const { title, url, description, pubDate, isFullHeight } = Astro.props;
+const { title, url, description, pubDate, isFullHeight, isSeries } =
+  Astro.props;
 const date = new Date(pubDate);
 const formattedDate = date.toLocaleString("en-US", {
   month: "long",
   day: "numeric",
   year: "numeric",
 });
+import { Library } from "lucide-react";
 ---
 
 <article class={`flex flex-col ${isFullHeight ? "md:min-h-[80dvh]" : ""}`}>
-  <p class="text-sm">
-    {formattedDate}
-  </p>
+  <div class="text-sm flex items-center">
+    <time>{formattedDate}</time>
+    {
+      isSeries && (
+        <span class="inline-flex items-center ml-2 bg-muted p-1">
+          <Library size={16} />
+          <span class="ml-1 uppercase text-xs font-bold tracking-wider">
+            Series
+          </span>
+        </span>
+      )
+    }
+  </div>
 
   <h2 class="text-xl font-semibold tracking-tight">
     <a class="primary-link" href={url}>{title}</a>

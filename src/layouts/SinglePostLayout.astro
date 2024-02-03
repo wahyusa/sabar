@@ -8,7 +8,17 @@ const formattedDate = date.toLocaleString("en-US", {
   year: "numeric",
 });
 import { formatTopic } from "@/lib/topicUtils.js";
+import { sortPostsByDate } from "@/lib/postUtils";
+import { getCollection } from "astro:content";
 import SinglePostStickySideNav from "@/components/SinglePostStickySideNav.astro";
+
+const allPosts = await getCollection("posts");
+
+// Get posts that belong to the same series
+const seriesPosts = allPosts.filter(
+  (post) => post.data.series === frontmatter.series
+);
+const sortedSeriesPosts = sortPostsByDate(seriesPosts);
 ---
 
 <BaseLayout
@@ -47,6 +57,31 @@ import SinglePostStickySideNav from "@/components/SinglePostStickySideNav.astro"
       <article
         class="col-span-12 mt-6 w-full px-6 md:px-0 max-w-[65ch] mx-auto"
       >
+        {
+          frontmatter.series && (
+            <div class="mb-8 bg-secondary p-4">
+              <h2 class="text-xl font-bold mb-2">
+                Series: {formatTopic(frontmatter.series)}
+              </h2>
+              <ul class="flex flex-col space-y-2 leading-7">
+                {sortedSeriesPosts.map((post) => (
+                  <li class="text-sm">
+                    <a
+                      class={`primary-link ${
+                        Astro.url.pathname === `/posts/${post.slug}/`
+                          ? " decoration-1 decoration-double underline"
+                          : ""
+                      }`}
+                      href={`/posts/${post.slug}/`}
+                    >
+                      {post.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
         <slot />
       </article>
       <!-- <SinglePostStickySideNav /> -->

@@ -13,6 +13,7 @@ const postsCollection = defineCollection({
     //   alt: z.string(),
     // }),
     topics: z.array(z.string()),
+    series: z.string().optional(),
   }),
 });
 // Export a single `collections` object to register your collection(s)

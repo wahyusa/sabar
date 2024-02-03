@@ -1,0 +1,85 @@
+---
+title: "HRIS with Laravel 10 Project Setup in Windows with Laragon"
+# year-month-day
+pubDate: 2024-02-03 12:03:00
+description: "Building MVP project with laravel 10 part 2 HRIS with Laravel 10 Project Setup in Windows with Laragon"
+author: "Wahyu Syamsul A'lam"
+topics: ["windows", "laragon", "laravel"]
+series: "laravel-10-project-hris-mvp-core-web-app"
+---
+
+Welcome to the second part of the series on building a minimum viable product (MVP) project with Laravel 10. In this part, we will learn how to set up our development environment in Windows using Laragon, a fast and easy-to-use local server.
+
+Laragon is a portable, isolated, fast and powerful universal development environment for PHP, Node.js, Python, Java, Go, Ruby. It is designed to help developers create modern web applications faster and easier.
+
+To start building our HRIS, we need to set up our development environment first. In this tutorial, we will use Windows as our operating system and Laragon as our local server. We will also install Composer, a dependency manager for PHP, and Laravel Installer, a tool that allows us to create new Laravel projects quickly.
+
+Let's get started!
+
+## Step 1: Install Laragon
+
+First, we need to download and install Laragon from its official website. You can find the download link [here](https://laragon.org/download/index.html).
+
+Once you have downloaded the installer, run it and follow the installation instructions. Laragon will be installed in the `C:\laragon` directory by default.
+
+## Step 2: Install Composer
+
+Composer is a dependency manager for PHP that allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
+
+To install Composer, download the Windows installer from the [official website](https://getcomposer.org/download/). Once you have downloaded the installer, run it and follow the installation instructions.
+
+After installing Composer, you can open a new command prompt and run the following command to verify the installation:
+
+```bash
+composer --version
+```
+
+If the installation was successful, you should see the Composer version number in the output.
+
+## Step 3: Install Laravel Installer
+
+Laravel Installer is a tool that allows you to create new Laravel projects quickly. To install Laravel Installer, open a new command prompt and run the following command:
+
+```bash
+composer global require laravel/installer
+```
+
+After installing Laravel Installer, you can open a new command prompt and run the following command to verify the installation:
+
+```bash
+laravel --version
+```
+
+If the installation was successful, you should see the Laravel Installer version number in the output.
+
+## Step 4: Create a New Laravel Project with Laravel 10 breeze
+
+Now that we have Laragon, Composer, and Laravel Installer installed, we can create a new Laravel project. Open Laragon and click on the "Terminal" button to open a new command prompt.
+
+In the command prompt, navigate to the directory where you want to create your new Laravel project. For example, if you want to create the project in the `C:\laragon\www` directory, you can run the following command:
+
+```bash
+cd C:\laragon\www
+```
+
+Once you are in the directory where you want to create your new Laravel project, you can run the following command to create the project:
+
+```bash
+laravel new hris-mvp
+```
+
+This will also prompt you to use specific starter kit from official Laravel.
+Choose breeze with blade, and for tailwind css dark mode choose no.
+
+This will create a new Laravel project with the name `hris-mvp` in the current directory. Once the project is created, you can navigate to the project directory and start the development server by running the following command:
+
+```bash
+cd hris-mvp
+php artisan serve
+```
+
+This will start the development server, and you can access your new Laravel project by opening your web browser and navigating to `http://localhost:8000`.
+
+Congratulations! You have successfully set up your development environment for building an HRIS with Laravel 10. In the next part of this series, we will start building the core web application for our HRIS.
+
+
