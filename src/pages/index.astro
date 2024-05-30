@@ -8,9 +8,112 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        font-family:
+          IBM Plex Sans,
+          sans-serif;
+      }
+    </style>
     <title>Astro</title>
   </head>
   <body>
-    <h1 class="text-sky-600">Astro but with Tailwind CSS</h1>
+    <!-- HEADER START -->
+    <header class="mx-auto max-w-prose bg-neutral-50">
+      <div
+        class="flex flex-col items-center justify-center gap-6 p-4 shadow-inner sm:flex-row"
+      >
+        <img
+          class="mx-auto w-40 max-w-full rounded-b-full shadow-lg"
+          src="https://i.postimg.cc/vTb281TR/anime-girl-confident-but-actually-dumb-chibi-style-with-long-black-hair-and-kuudere-look-and-1.png"
+        />
+        <h1 class="text-balance text-center text-4xl font-light">
+          Dumb, can't read documentation.
+        </h1>
+      </div>
+    </header>
+    <!-- HEADER END -->
+
+    <!-- TOP NAV START -->
+    <nav class="sticky top-0 mx-auto max-w-prose bg-white p-4 shadow">
+      <div class="flex items-center gap-4">
+        <img
+          class="size-8 rounded-full sm:size-16"
+          src="https://i.postimg.cc/pdd2rT9F/anime-girl-confident-but-actually-dumb-chibi-style-with-long-black-hair-and-kuudere-look-transpar.png"
+        />
+        <form class="flex-1">
+          <input
+            type="search"
+            placeholder="Search ..."
+            class="w-full rounded-md px-4 py-2 outline outline-2 outline-zinc-300 focus:outline-zinc-500"
+          />
+        </form>
+      </div>
+    </nav>
+    <!-- TOP NAV END -->
+
+    <!-- MAIN START -->
+    <main class="mx-auto max-w-prose bg-white">
+      <!-- ARTICLE LIST START -->
+      <section class="mx-auto max-w-prose">
+        <!-- ARTICLE LOOP START -->
+        <article class="border-b border-dashed border-zinc-400 px-4 py-6">
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 3 hours ago</time
+          >
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >Basic Minimal Golang Development Environment Setup in Windows</a
+            >
+          </h2>
+        </article>
+        <article class="border-b border-dashed border-zinc-400 px-4 py-6">
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 1 days ago</time
+          >
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >Build CLI apps with Golang
+            </a>
+          </h2>
+        </article>
+        <article class="border-b border-dashed border-zinc-400 px-4 py-6">
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 2 days ago</time
+          >
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >How to Structure Golang Project for Beginner</a
+            >
+          </h2>
+        </article>
+        <!-- ARTICLE LOOP END -->
+      </section>
+      <!-- ARTICLE LIST END -->
+    </main>
+    <!-- MAIN END -->
+    <!-- STUPID 100DVH DIV TO TEST TOP NAV STICKY -->
+    <div class="min-h-dvh"></div>
+    <script is:inline>
+      let prevScrollpos = window.scrollY;
+      const header = document.getElementsByTagName("header")[0];
+
+      window.onscroll = function () {
+        let currentScrollPos = window.scrollY;
+        if (prevScrollpos > currentScrollPos) {
+          header.style.top = "0";
+        } else {
+          header.style.top = "-68px"; // Adjust this value to match the height of your header
+        }
+        prevScrollpos = currentScrollPos;
+      };
+    </script>
   </body>
 </html>

@@ -1,0 +1,175 @@
+---
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content="{Astro.generator}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Astro</title>
+  </head>
+  <body>
+    <header class="mx-auto max-w-prose bg-neutral-50">
+      <div
+        class="flex flex-col items-center justify-center gap-6 p-4 shadow-inner sm:flex-row"
+      >
+        <img
+          class="mx-auto w-40 max-w-full rounded-b-full shadow-lg"
+          src="https://i.postimg.cc/vTb281TR/anime-girl-confident-but-actually-dumb-chibi-style-with-long-black-hair-and-kuudere-look-and-1.png"
+        />
+        <h1 class="text-balance text-center text-4xl font-light">
+          Dumb, can't read documentation.
+        </h1>
+      </div>
+    </header>
+    <nav class="sticky top-0 mx-auto max-w-prose bg-white p-4 shadow">
+      <div class="flex items-center gap-4">
+        <img
+          class="size-8 rounded-full sm:size-16"
+          src="https://i.postimg.cc/pdd2rT9F/anime-girl-confident-but-actually-dumb-chibi-style-with-long-black-hair-and-kuudere-look-transpar.png"
+        />
+        <form class="flex-1">
+          <input
+            type="search"
+            placeholder="Search ..."
+            class="w-full rounded-md px-4 py-2 outline outline-2 outline-zinc-300 focus:outline-zinc-500"
+          />
+        </form>
+      </div>
+    </nav>
+    <main class="mx-auto max-w-prose bg-white">
+      <section class="mx-auto max-w-prose">
+        <article class="border-b border-dashed border-zinc-400 px-4 py-6">
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 3 hours ago</time
+          >
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >Basic Minimal Golang Development Environment Setup in Windows</a
+            >
+          </h2>
+        </article>
+        <article class="border-b border-dashed border-zinc-400 px-4 py-6">
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 1 days ago</time
+          >
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >Build CLI apps with Golang
+            </a>
+          </h2>
+        </article>
+        <article class="border-b border-dashed border-zinc-400 px-4 py-6">
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 2 days ago</time
+          >
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >How to Structure Golang Project for Beginner</a
+            >
+          </h2>
+        </article>
+      </section>
+      <!-- divider lol -->
+      <div class="min-h-screen"></div>
+      <section id="view-artile" class="mx-auto max-w-prose">
+        <article class="px-4 py-6">
+          <h2 class="text-balance text-2xl">
+            <a href="#!" class="underline-offset-2 hover:underline"
+              >How to Structure Golang Project for Beginner</a
+            >
+          </h2>
+          <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+            >24 Feb 2024 | 26-02-2024 | 2 days ago</time
+          >
+          <section id="Introduction" class="mt-8">
+            <h3 class="text-xl font-semibold uppercase">Take away</h3>
+            <p>
+              - Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br />
+              - Quisquam laboriosam ea perferendis animi officiis consectetur
+              <br />
+              - facere rerum necessitatibus, praesentium voluptatem ab? <br />
+              - Nisi vero possimus temporibus odit, sequi nostrum rerum
+              quibusdam.
+            </p>
+            <p class="mt-4 leading-6">
+              Starting your first Golang project? Here's a simple guide to get
+              you up and running quickly. Don't worry about perfect code or
+              architecture—just start building and refine it later.
+            </p>
+            <p class="mt-4 leading-6">
+              Create a new directory for your project. Open a terminal and run:
+            </p>
+            <pre class="my-4 rounded-lg bg-zinc-200 p-4 shadow-sm">
+mkdir myproject
+cd myproject</pre
+            >
+            <h3 class="mt-8 text-xl font-semibold uppercase">
+              Project initialization
+            </h3>
+            <p class="mt-4 leading-6">
+              Run the following command to initialize a new Go module:
+            </p>
+            <pre class="my-4 rounded-lg bg-zinc-200 p-4 shadow-sm">
+go mod init myproject
+</pre
+            >
+            <h4 class="mt-2 text-lg font-semibold">
+              What the F is a Module in Go ?
+            </h4>
+            <p class="mt-2 leading-6">
+              A module is a collection of Go packages stored in a file tree with
+              a go.mod file at its root. The go.mod file defines the module's
+              path and its dependencies.
+            </p>
+            <h3 class="mt-8 text-xl font-semibold uppercase">
+              Basic project structure
+            </h3>
+            <pre class="my-4 rounded-lg bg-zinc-200 p-4 shadow-sm">
+myproject/
+│
+├── cmd/
+│   └── myproject/
+│       └── main.go
+├── pkg/
+│   └── greet/
+│       └── greet.go
+└── go.mod
+</pre
+            >
+            <h4 class="mt-2 text-lg font-semibold">Directory Breakdown</h4>
+            <p class="mt-2 leading-6">
+              cmd/myproject/main.go: Entry point for your application.
+            </p>
+            <p class="mt-2 leading-6">
+              pkg/greet/greet.go: Package for reusable code.
+            </p>
+            <h4 class="mt-2 text-lg font-semibold">Key Concepts</h4>
+            <p class="mt-2 leading-6">
+              Entrypoint: The starting point of your application. In Go, it's
+              the main package and the main() function.
+            </p>
+            <p class="mt-2 leading-6">
+              Package: A way to organize and reuse code. Packages can be
+              imported and used in other packages or projects.
+            </p>
+          </section>
+        </article>
+      </section>
+    </main>
+    <!-- 
+    https://i.postimg.cc/pdd2rT9F/anime-girl-confident-but-actually-dumb-chibi-style-with-long-black-hair-and-kuudere-look-transpar.png
+
+    https://i.postimg.cc/vTb281TR/anime-girl-confident-but-actually-dumb-chibi-style-with-long-black-hair-and-kuudere-look-and-1.png
+
+    Wahyu Syamsul A'lam Tampan
+-->
+  </body>
+</html>
