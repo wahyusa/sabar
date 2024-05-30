@@ -1,0 +1,45 @@
+---
+const { time, title, link } = Astro.props;
+---
+
+<article class="border-b border-dashed border-zinc-400 px-4 py-6">
+  <time class="mb-1 text-sm uppercase tracking-widest sm:text-base">
+    {time}
+  </time>
+  <h2 class="text-balance text-2xl">
+    <a href={link} class="underline-offset-2 hover:underline">
+      {title}
+    </a>
+  </h2>
+</article>
+<!--   
+<article class="border-b border-dashed border-zinc-400 px-4 py-6">
+  <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+    >24 Feb 2024 | 26-02-2024 | 3 hours ago</time
+  >
+  <h2 class="text-balance text-2xl">
+    <a href="#!" class="underline-offset-2 hover:underline"
+      >Basic Minimal Golang Development Environment Setup in Windows</a
+    >
+  </h2>
+</article>
+<article class="border-b border-dashed border-zinc-400 px-4 py-6">
+  <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+    >24 Feb 2024 | 26-02-2024 | 1 days ago</time
+  >
+  <h2 class="text-balance text-2xl">
+    <a href="#!" class="underline-offset-2 hover:underline"
+      >Build CLI apps with Golang
+    </a>
+  </h2>
+</article>
+<article class="border-b border-dashed border-zinc-400 px-4 py-6">
+  <time class="mb-1 text-sm uppercase tracking-widest sm:text-base"
+    >24 Feb 2024 | 26-02-2024 | 2 days ago</time
+  >
+  <h2 class="text-balance text-2xl">
+    <a href="#!" class="underline-offset-2 hover:underline"
+      >How to Structure Golang Project for Beginner</a
+    >
+  </h2>
+</article> -->
