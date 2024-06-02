@@ -1,3 +1,15 @@
+---
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
 <nav class="sticky top-0 mx-auto max-w-prose bg-white p-4 shadow">
   <div class="flex items-center gap-4">
     <img
@@ -12,4 +24,21 @@
       />
     </form>
   </div>
+  <ul>
+    <li>
+      <a href={translatePath("/home/")}>
+        {t("nav.home")}
+      </a>
+    </li>
+    <li>
+      <a href={translatePath("/about/")}>
+        {t("nav.about")}
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/astrodotbuild">
+        {t("nav.twitter")}
+      </a>
+    </li>
+  </ul>
 </nav>

@@ -1,9 +1,13 @@
 ---
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 import Header from "../components/Header.astro";
 import TopNav from "../components/TopNav.astro";
+import LanguagePicker from "../components/LanguagePicker.astro";
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -29,5 +33,6 @@ import TopNav from "../components/TopNav.astro";
     <Header />
     <TopNav />
     <slot />
+    <LanguagePicker />
   </body>
 </html>
