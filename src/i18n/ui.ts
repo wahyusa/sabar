@@ -9,7 +9,6 @@ export const ui = {
   id: {
     "nav.home": "Beranda",
     "nav.about": "Tentang Saya",
-    "nav.twitter": "Twitter",
   },
   en: {
     "nav.home": "Home",
