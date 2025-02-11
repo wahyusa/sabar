@@ -1,76 +1,19 @@
 ---
 import HomeLayout from "@/layouts/HomeLayout.astro";
-import { Separator } from "@/components/ui/separator";
-import { buttonVariants } from "@/components/ui/button";
-import { ModeToggle } from "@/components/ModeToggle";
-import { Picture } from "astro:assets";
-import PixelAvatar from "@/images/pixel.png";
 ---
 
 <HomeLayout>
-  <Picture
-    src={PixelAvatar}
-    alt="My pixel avatar!"
-    width={96}
-    height={96}
-    formats={["avif", "webp"]}
-    class="aspect-square rounded-full shadow-sm scroll-m-20 size-24 object-cover"
-  />
   <h1 class="mt-6 text-3xl font-semibold tracking-tight transition-colors">
-    Wahyu Syamsul A&rsquo;lam
+    Gua udah muak!
   </h1>
   <div
     class="flex flex-col md:flex-row items-center justify-between [&:not(:first-child)]:mt-6 w-full"
   >
     <p class="leading-7 max-w-[480px] text-balance">
-      I&rsquo;m a tech enthusiast based in Indonesia, enjoying my free time to
-      write about tech and programming. 1 year professional experience on web
-      development with Tailwind CSS, Laravel, Git.
+Umur 20 tahun pengalaman 5 tahun, siap menguasai semua elemen, siap dibayar makasih
     </p>
   </div>
   <div class="sr-only">
     <span class="contains-task-list task-list-item"></span>
   </div>
-  <!-- social links -->
-  <div
-    class="flex h-5 items-center space-x-2 text-sm mb-4 [&:not(:first-child)]:mt-6"
-  >
-    <a class={buttonVariants({ variant: "outline" })} href="/blog">Blog</a>
-    <Separator orientation="vertical" />
-    <a
-      class={buttonVariants({ variant: "outline" })}
-      href="https://github.com/wahyusa">GitHub</a
-    >
-    <Separator orientation="vertical" />
-    <div>
-      <ModeToggle client:load />
-    </div>
-  </div>
-  <Separator className="my-4" />
-  <script is:inline>
-    const getThemePreference = () => {
-      if (
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
-      ) {
-        return localStorage.getItem("theme");
-      }
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    };
-    const isDark = getThemePreference() === "dark";
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-    if (typeof localStorage !== "undefined") {
-      const observer = new MutationObserver(() => {
-        const isDark = document.documentElement.classList.contains("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-      });
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["class"],
-      });
-    }
-  </script>
 </HomeLayout>
